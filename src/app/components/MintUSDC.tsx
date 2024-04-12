@@ -1,0 +1,46 @@
+import { useWriteContract } from "wagmi";
+
+interface MintProps {
+  amount: number;
+  address: `0x${string}`;
+}
+
+const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
+  const { data: hash, isPending, writeContract } = useWriteContract();
+  const abi = [
+    {
+      inputs: [
+        { internalType: "address", name: "_recipient", type: "address" },
+        { internalType: "uint256", name: "_amount", type: "uint256" },
+      ],
+      name: "mint",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ];
+
+  const mintUSDC = async () => {
+    await writeContract({
+      address: "0x14196F08a4Fa0B66B7331bC40dd6bCd8A1dEeA9F",
+      abi,
+      functionName: "mint",
+      args: [address, amount * 10 ** 6],
+    });
+  };
+
+  return (
+    <>
+      <button
+        onClick={mintUSDC}
+        className="w-40 px-4 py-2 rounded-md text-white font-mono bg-green-500"
+        disabled={isPending}
+      >
+        {isPending ? "Confirming..." : "Mint USDC"}
+      </button>
+      {hash && <div className="m-4">Transaction Complete! {hash}</div>}
+    </>
+  );
+};
+
+export default MintUSDC;
