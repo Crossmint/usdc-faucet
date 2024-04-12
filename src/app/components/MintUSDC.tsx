@@ -1,4 +1,8 @@
-import { useWriteContract } from "wagmi";
+import {
+  type BaseError,
+  useWaitForTransactionReceipt,
+  useWriteContract,
+} from "wagmi";
 
 interface MintProps {
   amount: number;
@@ -6,7 +10,7 @@ interface MintProps {
 }
 
 const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
-  const { data: hash, isPending, writeContract } = useWriteContract();
+  const { data: hash, error, isPending, writeContract } = useWriteContract();
   const abi = [
     {
       inputs: [
@@ -20,8 +24,9 @@ const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
     },
   ];
 
-  const mintUSDC = async () => {
-    await writeContract({
+  const mintUSDC = () => {
+    console.log("mint USDC");
+    writeContract({
       address: "0x14196F08a4Fa0B66B7331bC40dd6bCd8A1dEeA9F",
       abi,
       functionName: "mint",
@@ -29,16 +34,26 @@ const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
     });
   };
 
+  const { isLoading: isConfirming, isSuccess: isConfirmed } =
+    useWaitForTransactionReceipt({
+      hash,
+    });
+
   return (
     <>
       <button
         onClick={mintUSDC}
-        className="w-40 px-4 py-2 rounded-md text-white font-mono bg-green-500"
+        className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-green-500"
         disabled={isPending}
       >
         {isPending ? "Confirming..." : "Mint USDC"}
       </button>
-      {hash && <div className="m-4">Transaction Complete! {hash}</div>}
+      {hash && <div className="m-4">Transaction hash: {hash}</div>}
+      {isConfirming && <div>Waiting for confirmation...</div>}
+      {isConfirmed && <div>Transaction confirmed.</div>}
+      {error && (
+        <div>Error: {(error as BaseError).shortMessage || error.message}</div>
+      )}
     </>
   );
 };

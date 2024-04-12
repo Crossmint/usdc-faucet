@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Address from "../components/Address";
 import Amount from "../components/Amount";
 import Chains from "../components/Chains";
@@ -8,8 +8,12 @@ import { useAccount } from "wagmi";
 
 const Faucet: React.FC = () => {
   const account = useAccount();
-  const [amount, setAmount] = useState(0);
-  const [address, setAddress] = useState(account.address || "0xabdc1234...");
+  const [amount, setAmount] = useState(10);
+  const [address, setAddress] = useState(account.address || "0xabcde12345...");
+
+  useEffect(() => {
+    setAddress(account.address || "0x");
+  }, [account]);
 
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
