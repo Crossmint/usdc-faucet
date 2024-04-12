@@ -12,7 +12,7 @@ const Chains: React.FC = () => {
           chainId === 84532 ? "bg-blue-700" : "bg-blue-400 hover:bg-blue-700"
         }`}
       >
-        Base Sepolia{chainId === 84532 && <span>&#10003;</span>}
+        Base Sepolia {chainId === 84532 && <span>&#10003;</span>}
       </button>
       <button
         onClick={() => switchChain({ chainId: 11155111 })}
