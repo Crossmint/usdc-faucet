@@ -11,6 +11,7 @@ const Preview: React.FC<PreviewProps> = ({ amount, address }) => {
   const chainIdMap: { [key: string]: string } = {
     "84532": "base-sepolia",
     "11155111": "ethereum-sepolia",
+    "421614": "arbitrum-sepolia",
     "80002": "polygon-amoy",
   };
 

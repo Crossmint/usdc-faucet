@@ -6,13 +6,18 @@ import Footer from "./components/Footer";
 import "@rainbow-me/rainbowkit/styles.css";
 import { getDefaultConfig, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { WagmiProvider } from "wagmi";
-import { sepolia, baseSepolia, polygonAmoy } from "wagmi/chains";
+import {
+  sepolia,
+  baseSepolia,
+  arbitrumSepolia,
+  polygonAmoy,
+} from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
 const config = getDefaultConfig({
   appName: "Crossmint USDC Testnet Faucet",
   projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_ID || "",
-  chains: [baseSepolia, sepolia, polygonAmoy],
+  chains: [baseSepolia, sepolia, arbitrumSepolia, polygonAmoy],
   ssr: true,
 });
 

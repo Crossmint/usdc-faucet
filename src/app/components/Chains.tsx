@@ -23,6 +23,14 @@ const Chains: React.FC = () => {
         Ethereum Sepolia {chainId === 11155111 && <span>&#10003;</span>}
       </button>
       <button
+        onClick={() => switchChain({ chainId: 421614 })}
+        className={`px-4 py-2 rounded-full text-white font-mono ${
+          chainId === 421614 ? "bg-blue-900" : "bg-blue-700 hover:bg-blue-900"
+        }`}
+      >
+        Arbitrum Sepolia {chainId === 421614 && <span>&#10003;</span>}
+      </button>
+      <button
         onClick={() => switchChain({ chainId: 80002 })}
         className={`px-4 py-2 rounded-full text-white font-mono ${
           chainId === 80002
