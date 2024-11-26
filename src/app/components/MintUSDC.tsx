@@ -9,7 +9,7 @@ interface MintProps {
   address: `0x${string}`;
 }
 
-const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
+const MintUSDXM: React.FC<MintProps> = ({ amount, address }) => {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
   const abi = [
     {
@@ -24,8 +24,8 @@ const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
     },
   ];
 
-  const mintUSDC = () => {
-    console.log("mint USDC");
+  const mintUSXM = () => {
+    console.log("mint USDXM");
     writeContract({
       address: "0x14196F08a4Fa0B66B7331bC40dd6bCd8A1dEeA9F",
       abi,
@@ -42,7 +42,7 @@ const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
   return (
     <>
       <button
-        onClick={mintUSDC}
+        onClick={mintUSXM}
         className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-green-500"
         disabled={isPending}
       >
@@ -58,4 +58,4 @@ const MintUSDC: React.FC<MintProps> = ({ amount, address }) => {
   );
 };
 
-export default MintUSDC;
+export default MintUSDXM;
