@@ -3,7 +3,7 @@ import Address from "../components/Address";
 import Amount from "../components/Amount";
 import Chains from "../components/Chains";
 import Preview from "../components/Preview";
-import MintUSDXM from "../components/MintUSDC";
+import MintUSDXM from "../components/MintUSDXM";
 import { useAccount } from "wagmi";
 import { CryptoCurrency } from "../currencies/CryptoCurrencies";
 import Currencies from "./Currencies";
