@@ -1,3 +1,4 @@
+import React from "react";
 import { type BaseError, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 
 interface MintProps {

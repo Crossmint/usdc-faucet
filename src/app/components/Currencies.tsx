@@ -1,3 +1,4 @@
+import React from "react";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 
 interface CurrenciesProps {

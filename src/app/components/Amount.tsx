@@ -1,8 +1,9 @@
+import React from "react";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 
 interface AmountProps {
     amount: number;
-    setAmount: Function;
+    setAmount: (value: number) => void;
     currency: CryptoCurrency;
 }
 

@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { UsdcEnabledTestnet } from "../types/blockchain/BlockChains";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import { fetchPostJson } from "../utils";

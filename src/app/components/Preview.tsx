@@ -1,5 +1,7 @@
+import React from "react";
 import { UsdcEnabledTestnet } from "../types/blockchain/BlockChains";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
+
 interface PreviewProps {
     amount: number;
     address: string;
