@@ -3,11 +3,11 @@ import Faucet from "./Faucet";
 import DeliveryComplete from "./DeliveryComplete";
 
 export default function FaucetRouter() {
-  const { fundWalletResponse } = useFundWallet();
+    const { fundWalletResponse } = useFundWallet();
 
-  if (fundWalletResponse) {
-    return <DeliveryComplete />;
-  }
+    if (fundWalletResponse) {
+        return <DeliveryComplete />;
+    }
 
-  return <Faucet />;
+    return <Faucet />;
 }
