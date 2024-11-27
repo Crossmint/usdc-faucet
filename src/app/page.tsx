@@ -13,6 +13,7 @@ import {
   polygonAmoy,
 } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { FundWalletProvider } from "./hooks/useFundWallet";
 
 const config = getDefaultConfig({
   appName: "Crossmint USDC Testnet Faucet",
@@ -27,15 +28,17 @@ const Page: React.FC = () => {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider modalSize="compact">
-          <div className="container mx-auto max-w-5xl bg-white rounded-lg">
-            <div className="grid grid-cols-1 sm:grid-cols-6 sm:gap-8 p-8">
-              <Navigation />
-              <Faucet />
+        <FundWalletProvider>
+          <RainbowKitProvider modalSize="compact">
+            <div className="container mx-auto max-w-5xl bg-white rounded-lg">
+              <div className="grid grid-cols-1 sm:grid-cols-6 sm:gap-8 p-8">
+                <Navigation />
+                <Faucet />
+              </div>
             </div>
-          </div>
-          <Footer />
-        </RainbowKitProvider>
+            <Footer />
+          </RainbowKitProvider>
+        </FundWalletProvider>
       </QueryClientProvider>
     </WagmiProvider>
   );

@@ -1,18 +1,21 @@
-import { CryptoCurrency } from "../currencies/CryptoCurrencies";
+import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 
 interface CurrenciesProps {
   currency: CryptoCurrency;
   onChangeCurrency: (currency: CryptoCurrency) => void;
 }
 
-const Currencies: React.FC<CurrenciesProps> = ({ currency, onChangeCurrency }) => {
+const Currencies: React.FC<CurrenciesProps> = ({
+  currency,
+  onChangeCurrency,
+}) => {
   return (
     <div className="flex space-x-4 mt-4">
       <button
         onClick={() => onChangeCurrency(CryptoCurrency.USDC)}
         className={`px-4 py-2 rounded-full text-white font-mono ${
-          currency === CryptoCurrency.USDC 
-            ? "bg-green-700" 
+          currency === CryptoCurrency.USDC
+            ? "bg-green-700"
             : "bg-green-400 hover:bg-green-700"
         }`}
       >
