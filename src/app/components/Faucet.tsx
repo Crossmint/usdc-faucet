@@ -14,7 +14,7 @@ import {
 const Faucet: React.FC = () => {
   const { fundWallet, fundWalletLoading } = useFundWallet();
   const [amount, setAmount] = useState(30);
-  const [address, setAddress] = useState("0xabcde12345...");
+  const [address, setAddress] = useState("");
   const [currency, setCurrency] = useState<CryptoCurrency>(CryptoCurrency.USDC);
   const [chain, setChain] = useState<UsdcEnabledTestnet>(
     UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA
@@ -22,7 +22,7 @@ const Faucet: React.FC = () => {
 
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
-      <Address setAddress={setAddress} />
+      <Address address={address} setAddress={setAddress} />
       <Currencies currency={currency} onChangeCurrency={setCurrency} />
       <CrossmintChains chain={chain} onChainChange={setChain} />
       <Amount amount={amount} setAmount={setAmount} currency={currency} />
