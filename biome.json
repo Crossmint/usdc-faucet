@@ -1,0 +1,150 @@
+{
+    "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+    "formatter": {
+        "enabled": true,
+        "formatWithErrors": false,
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineEnding": "lf",
+        "lineWidth": 120,
+        "attributePosition": "auto",
+        "ignore": [
+            "node_modules",
+            "libraries/**/dist/**",
+            "public",
+            ".next",
+            ".vercel",
+            "coverage",
+            "playwright-report",
+            "services/snowcrash",
+            "src/services/db/datasource_migrate.ts",
+            "turbo/**/*.hbs",
+            "pnpm-lock.yaml",
+            "**/*/circular-dependencies.json",
+            "collected-circular-dependencies.json",
+            "eslint.config.mjs",
+            "k6/**/*"
+        ]
+    },
+    "organizeImports": {
+        "enabled": false
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "recommended": false,
+            "a11y": {
+                "noAriaUnsupportedElements": "warn",
+                "noBlankTarget": "warn",
+                "useAltText": "warn",
+                "useAriaPropsForRole": "warn",
+                "useValidAriaProps": "warn",
+                "useValidAriaValues": "warn"
+            },
+            "complexity": {
+                "noBannedTypes": "warn",
+                "noUselessTypeConstraint": "error"
+            },
+            "correctness": {
+                "noPrecisionLoss": "error",
+                "noUnusedImports": "error",
+                "noChildrenProp": "error",
+                "useHookAtTopLevel": "warn",
+                "useJsxKeyInIterable": "warn",
+                "noUnusedVariables": "warn",
+                "useExhaustiveDependencies": "warn",
+                "useArrayLiterals": "warn"
+            },
+            "security": {
+                "noDangerouslySetInnerHtml": "error"
+            },
+            "style": {
+                "noInferrableTypes": "error",
+                "noNamespace": "warn",
+                "useAsConstAssertion": "error",
+                "useBlockStatements": "warn",
+                "noNonNullAssertion": "warn",
+                "noParameterAssign": "warn"
+            },
+            "suspicious": {
+                "noExtraNonNullAssertion": "error",
+                "noFallthroughSwitchClause": "error",
+                "noMisleadingInstantiator": "error",
+                "useNamespaceKeyword": "error",
+                "noCommentText": "error",
+                "noDuplicateJsxProps": "error",
+                "noEmptyBlockStatements": "warn",
+                "noExplicitAny": "warn"
+            }
+        },
+        "ignore": [
+            "./apps/crossmint-nextjs/src/models/encryption/mongoose-field-encryption/mongoose-field-encryption.js",
+            "./apps/crossmint-nextjs/src/utils/empty.js",
+            "./apps/crossmint-nextjs/src/utils/empty-aws-sdk/*",
+            "./apps/crossmint-nextjs/src/utils/i18n/validate-wordings.js",
+            "coverage",
+            "libraries/**/dist/**",
+            ".next",
+            ".vercel",
+            "playwright-report",
+            "services/snowcrash",
+            "src/services/db/datasource_migrate.ts",
+            "turbo/**/*.hbs",
+            "pnpm-lock.yaml",
+            "**/*/circular-dependencies.json",
+            "collected-circular-dependencies.json",
+            "k6/**/*"
+        ]
+    },
+    "javascript": {
+        "formatter": {
+            "jsxQuoteStyle": "double",
+            "quoteProperties": "asNeeded",
+            "trailingCommas": "es5",
+            "semicolons": "always",
+            "arrowParentheses": "always",
+            "bracketSpacing": true,
+            "bracketSameLine": false,
+            "quoteStyle": "double",
+            "attributePosition": "auto"
+        },
+        "parser": {
+            "unsafeParameterDecoratorsEnabled": true
+        }
+    },
+    "overrides": [
+        {
+            "include": ["*.ts", "*.tsx", "*.mts", "*.cts"],
+            "linter": {
+                "rules": {
+                    "correctness": {
+                        "noConstAssign": "warn",
+                        "noGlobalObjectCalls": "warn",
+                        "noInvalidConstructorSuper": "warn",
+                        "noNewSymbol": "warn",
+                        "noSetterReturn": "warn",
+                        "noUndeclaredVariables": "warn",
+                        "noUnreachable": "warn",
+                        "noUnreachableSuper": "warn"
+                    },
+                    "style": {
+                        "noArguments": "error",
+                        "noVar": "warn",
+                        "useConst": "warn"
+                    },
+                    "suspicious": {
+                        "noDuplicateClassMembers": "warn",
+                        "noDuplicateObjectKeys": "warn",
+                        "noDuplicateParameters": "warn",
+                        "noFunctionAssign": "warn",
+                        "noImportAssign": "warn",
+                        "noRedeclare": "warn",
+                        "noUnsafeNegation": "warn",
+                        "useGetterReturn": "warn",
+                        "useValidTypeof": "warn"
+                    }
+                }
+            }
+        }
+    ]
+}

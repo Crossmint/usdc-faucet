@@ -1,37 +1,30 @@
+import React from "react";
+import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
+
 interface AmountProps {
-  amount: number;
-  setAmount: Function;
+    amount: number;
+    setAmount: (value: number) => void;
+    currency: CryptoCurrency;
 }
 
-const Chains: React.FC<AmountProps> = ({ amount, setAmount }) => {
-  return (
-    <div className="flex space-x-4 mt-8">
-      <button
-        onClick={() => setAmount(10)}
-        className={`w-40 px-4 py-2 rounded-md text-white font-mono ${
-          amount === 10 ? "bg-black" : "bg-gray-400 hover:bg-black"
-        }`}
-      >
-        10 USDC {amount === 10 && <span>&#10003;</span>}
-      </button>
-      <button
-        onClick={() => setAmount(100)}
-        className={`w-40 px-4 py-2 rounded-md text-white font-mono ${
-          amount === 100 ? "bg-black" : "bg-gray-400 hover:bg-black"
-        }`}
-      >
-        100 USDC {amount === 100 && <span>&#10003;</span>}
-      </button>
-      <button
-        onClick={() => setAmount(1000)}
-        className={`w-40 px-4 py-2 rounded-md text-white font-mono ${
-          amount === 1000 ? "bg-black" : "bg-gray-400 hover:bg-black"
-        }`}
-      >
-        1,000 USDC {amount === 1000 && <span>&#10003;</span>}
-      </button>
-    </div>
-  );
+const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency }) => {
+    const amounts = [30, 70, 100];
+
+    return (
+        <div className="flex space-x-4 mt-8">
+            {amounts.map((value) => (
+                <button
+                    key={value}
+                    onClick={() => setAmount(value)}
+                    className={`w-40 px-4 py-2 rounded-md text-white font-mono ${
+                        amount === value ? "bg-black" : "bg-gray-400 hover:bg-black"
+                    }`}
+                >
+                    {value} {currency} {amount === value && <span>&#10003;</span>}
+                </button>
+            ))}
+        </div>
+    );
 };
 
-export default Chains;
+export default Amount;
