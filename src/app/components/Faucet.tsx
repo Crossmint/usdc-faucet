@@ -12,17 +12,29 @@ import {
 } from "../types/blockchain/BlockChains";
 
 const Faucet: React.FC = () => {
-  const { fundWallet, fundWalletLoading } = useFundWallet();
+  const { fundWallet, fundWalletLoading, error } = useFundWallet();
   const [amount, setAmount] = useState(30);
   const [address, setAddress] = useState("");
   const [currency, setCurrency] = useState<CryptoCurrency>(CryptoCurrency.USDC);
+  const [addressTouched, setAddressTouched] = useState(false);
   const [chain, setChain] = useState<UsdcEnabledTestnet>(
     UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA
   );
 
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
-      <Address address={address} setAddress={setAddress} />
+      <Address
+        address={address}
+        setAddress={(value) => {
+          setAddressTouched(true);
+          setAddress(value);
+        }}
+      />
+      {addressTouched && !address.trim() && (
+        <div className="text-red-500 text-sm">
+          Please enter a wallet address
+        </div>
+      )}
       <Currencies currency={currency} onChangeCurrency={setCurrency} />
       <CrossmintChains chain={chain} onChainChange={setChain} />
       <Amount amount={amount} setAmount={setAmount} currency={currency} />
@@ -34,7 +46,7 @@ const Faucet: React.FC = () => {
       />
       <button
         className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-blue-500 disabled:bg-gray-400"
-        disabled={fundWalletLoading}
+        disabled={fundWalletLoading || !address.trim()}
         onClick={() => {
           fundWallet({
             amount,
@@ -46,6 +58,7 @@ const Faucet: React.FC = () => {
       >
         {fundWalletLoading ? "Loading..." : "Fund Wallet"}
       </button>
+      {error && <div className="text-red-500">{error.message}</div>}
     </div>
   );
 };

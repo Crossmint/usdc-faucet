@@ -1,6 +1,6 @@
 interface AddressProps {
   address: string;
-  setAddress: Function;
+  setAddress: (value: string) => void;
 }
 
 const Address: React.FC<AddressProps> = ({ address, setAddress }) => {

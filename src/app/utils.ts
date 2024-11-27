@@ -15,12 +15,19 @@ export async function fetchPostJson<T>(
       },
       body: JSON.stringify(body),
     });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.log("panos");
+      console.error(errorData);
+      throw new Error(errorData.message || "Failed to fetch");
+    }
+
+    return processJsonResponse(res);
   } catch (e) {
     console.error(e);
-    throw new Error("Failed to fetch");
+    throw e; // Re-throw the error to be handled by the caller
   }
-
-  return processJsonResponse(res);
 }
 
 export function processJsonResponse(res: Response) {
