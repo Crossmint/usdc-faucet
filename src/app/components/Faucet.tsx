@@ -15,11 +15,9 @@ import {
 const Faucet: React.FC = () => {
   const account = useAccount();
   const { fundWallet, fundWalletLoading } = useFundWallet();
-  const [amount, setAmount] = useState(10);
+  const [amount, setAmount] = useState(30);
   const [address, setAddress] = useState(account.address || "0xabcde12345...");
-  const [currency, setCurrency] = useState<CryptoCurrency>(
-    CryptoCurrency.USDXM
-  );
+  const [currency, setCurrency] = useState<CryptoCurrency>(CryptoCurrency.USDC);
   const [chain, setChain] = useState<UsdcEnabledTestnet>(
     UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA
   );
@@ -30,10 +28,15 @@ const Faucet: React.FC = () => {
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
       <Address setAddress={setAddress} />
-      <Amount amount={amount} setAmount={setAmount} currency={currency} />
-      <CrossmintChains chain={chain} onChainChange={setChain} />
       <Currencies currency={currency} onChangeCurrency={setCurrency} />
-      <Preview amount={amount} address={account.address || ""} />
+      <CrossmintChains chain={chain} onChainChange={setChain} />
+      <Amount amount={amount} setAmount={setAmount} currency={currency} />
+      <Preview
+        amount={amount}
+        address={account.address || ""}
+        chain={chain}
+        currency={currency}
+      />
       <button
         className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-blue-500 disabled:bg-gray-400"
         disabled={fundWalletLoading}
