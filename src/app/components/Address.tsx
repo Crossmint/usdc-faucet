@@ -2,18 +2,18 @@ import { useState } from "react";
 import { useAccount } from "wagmi";
 
 interface AddressProps {
+  address: string;
   setAddress: Function;
 }
 
-const Address: React.FC<AddressProps> = ({ setAddress }) => {
-  const account = useAccount();
+const Address: React.FC<AddressProps> = ({ address, setAddress }) => {
   const [error, setError] = useState(false);
 
   return (
     <>
       <input
         type="text"
-        defaultValue={account.address}
+        defaultValue={address}
         onChange={(e) => {
           const value = e.target.value;
           if (value.startsWith("0x") && value.length === 42) {

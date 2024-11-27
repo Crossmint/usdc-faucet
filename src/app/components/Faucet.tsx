@@ -3,7 +3,6 @@ import Address from "../components/Address";
 import Amount from "../components/Amount";
 import { CrossmintChains } from "../components/Chains";
 import Preview from "../components/Preview";
-import { useAccount } from "wagmi";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import Currencies from "./Currencies";
 import { useFundWallet } from "../hooks/useFundWallet";
@@ -13,17 +12,13 @@ import {
 } from "../types/blockchain/BlockChains";
 
 const Faucet: React.FC = () => {
-  const account = useAccount();
   const { fundWallet, fundWalletLoading } = useFundWallet();
   const [amount, setAmount] = useState(30);
-  const [address, setAddress] = useState(account.address || "0xabcde12345...");
+  const [address, setAddress] = useState("0xabcde12345...");
   const [currency, setCurrency] = useState<CryptoCurrency>(CryptoCurrency.USDC);
   const [chain, setChain] = useState<UsdcEnabledTestnet>(
     UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA
   );
-  useEffect(() => {
-    setAddress(account.address || "0x");
-  }, [account]);
 
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
@@ -33,7 +28,7 @@ const Faucet: React.FC = () => {
       <Amount amount={amount} setAmount={setAmount} currency={currency} />
       <Preview
         amount={amount}
-        address={account.address || ""}
+        address={address}
         chain={chain}
         currency={currency}
       />

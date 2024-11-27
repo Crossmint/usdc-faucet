@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import { Oswald } from "next/font/google";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const oswald = Oswald({ subsets: ["latin"] });
 const Navigation: React.FC = () => {
@@ -20,11 +19,6 @@ const Navigation: React.FC = () => {
           USDC Testnet Faucet
         </div>
       </div>
-      <ConnectButton
-        showBalance={true}
-        chainStatus="none"
-        accountStatus="full"
-      />
     </div>
   );
 };
