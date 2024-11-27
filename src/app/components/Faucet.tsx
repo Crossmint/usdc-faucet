@@ -3,7 +3,6 @@ import Address from "../components/Address";
 import Amount from "../components/Amount";
 import { CrossmintChains } from "../components/Chains";
 import Preview from "../components/Preview";
-import MintUSDXM from "../components/MintUSDXM";
 import { useAccount } from "wagmi";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import Currencies from "./Currencies";
@@ -31,7 +30,7 @@ const Faucet: React.FC = () => {
   return (
     <div className="sm:col-span-6 flex flex-col items-center">
       <Address setAddress={setAddress} />
-      <Amount amount={amount} setAmount={setAmount} />
+      <Amount amount={amount} setAmount={setAmount} currency={currency} />
       <CrossmintChains chain={chain} onChainChange={setChain} />
       <Currencies currency={currency} onChangeCurrency={setCurrency} />
       <Preview amount={amount} address={account.address || ""} />
