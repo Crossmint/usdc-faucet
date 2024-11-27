@@ -16,7 +16,9 @@ export type FundWalletResponse = {
 
 export interface FundWalletContextType {
   fundWallet: (props: FundWalletProps) => Promise<FundWalletResponse>;
+  resetState: () => void;
   fundWalletLoading: boolean;
+  fundWalletResponse?: FundWalletResponse;
 }
 
 export const FundWalletContext = createContext<FundWalletContextType>({
@@ -25,8 +27,13 @@ export const FundWalletContext = createContext<FundWalletContextType>({
       "[FundWalletProvider] fundWallet called outside of provider"
     );
   },
-
+  resetState: () => {
+    throw new Error(
+      "[FundWalletProvider] resetState called outside of provider"
+    );
+  },
   fundWalletLoading: false,
+  fundWalletResponse: undefined,
 });
 
 export function FundWalletProvider({
@@ -35,6 +42,9 @@ export function FundWalletProvider({
   children: React.ReactNode;
 }) {
   const [fundWalletLoading, setFundWalletLoading] = useState(false);
+  const [fundWalletResponse, setFundWalletResponse] = useState<
+    FundWalletResponse | undefined
+  >(undefined);
 
   async function fundWallet(
     props: FundWalletProps
@@ -51,12 +61,18 @@ export function FundWalletProvider({
       fundWalletBody
     );
     setFundWalletLoading(false);
-
+    setFundWalletResponse(response);
     return response;
   }
 
+  function resetState() {
+    setFundWalletResponse(undefined);
+  }
+
   return (
-    <FundWalletContext.Provider value={{ fundWallet, fundWalletLoading }}>
+    <FundWalletContext.Provider
+      value={{ fundWallet, resetState, fundWalletLoading, fundWalletResponse }}
+    >
       {children}
     </FundWalletContext.Provider>
   );

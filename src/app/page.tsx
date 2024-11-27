@@ -14,6 +14,7 @@ import {
 } from "wagmi/chains";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { FundWalletProvider } from "./hooks/useFundWallet";
+import FaucetRouter from "./components/FaucetRouter";
 
 const config = getDefaultConfig({
   appName: "Crossmint USDC Testnet Faucet",
@@ -33,7 +34,7 @@ const Page: React.FC = () => {
             <div className="container mx-auto max-w-5xl bg-white rounded-lg">
               <div className="grid grid-cols-1 sm:grid-cols-6 sm:gap-8 p-8">
                 <Navigation />
-                <Faucet />
+                <FaucetRouter />
               </div>
             </div>
             <Footer />
