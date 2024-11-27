@@ -14,7 +14,6 @@ export async function fetchPostJson<T>(url: string, body: any, headers: Record<s
 
         if (!res.ok) {
             const errorData = await res.json();
-            console.log("panos");
             console.error(errorData);
             throw new Error(errorData.message || "Failed to fetch");
         }
