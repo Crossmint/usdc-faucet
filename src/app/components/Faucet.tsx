@@ -7,11 +7,13 @@ import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import Currencies from "./Currencies";
 import { useFundWallet } from "../hooks/useFundWallet";
 import { UsdcEnabledTestnet, UsdcEnabledTestnetChains } from "../types/blockchain/BlockChains";
+import APIKey from "./APIKey";
 
 const Faucet: React.FC = () => {
     const { fundWallet, fundWalletLoading, error } = useFundWallet();
     const [amount, setAmount] = useState(30);
     const [address, setAddress] = useState("");
+    const [apiKey, setApiKey] = useState("");
     const [currency, setCurrency] = useState<CryptoCurrency>(CryptoCurrency.USDC);
     const [addressTouched, setAddressTouched] = useState(false);
     const [chain, setChain] = useState<UsdcEnabledTestnet>(UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA);
@@ -32,15 +34,17 @@ const Faucet: React.FC = () => {
             <CrossmintChains chain={chain} onChainChange={setChain} />
             <Amount amount={amount} setAmount={setAmount} currency={currency} />
             <Preview amount={amount} address={address} chain={chain} currency={currency} />
+            <APIKey apiKey={apiKey} setApiKey={setApiKey} />
             <button
                 className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-blue-500 disabled:bg-gray-400"
-                disabled={fundWalletLoading || !address.trim()}
+                disabled={fundWalletLoading || !address.trim() || !apiKey.trim()}
                 onClick={() => {
                     fundWallet({
                         amount,
                         address,
                         chain: chain,
                         currency,
+                        apiKey: apiKey,
                     });
                 }}
             >
