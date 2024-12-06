@@ -8,6 +8,7 @@ export interface FundWalletProps {
     address: string;
     chain: UsdcEnabledTestnet;
     currency: CryptoCurrency;
+    apiKey: string;
 }
 
 export type FundWalletResponse = {
@@ -54,7 +55,10 @@ export function FundWalletProvider({
         try {
             const response = await fetchPostJson<FundWalletResponse>(
                 `https://staging.crossmint.com/api/v1-alpha2/wallets/${props.address}/balances`,
-                fundWalletBody
+                fundWalletBody,
+                {
+                    "x-api-key": props.apiKey,
+                }
             );
             setFundWalletLoading(false);
             setFundWalletResponse(response);
