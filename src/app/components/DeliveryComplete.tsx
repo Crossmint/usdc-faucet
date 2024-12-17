@@ -1,4 +1,5 @@
 import { useFundWallet } from "../hooks/useFundWallet";
+import { Button } from "@/components/ui/button";
 
 export default function DeliveryComplete() {
     const { resetState, fundWalletResponse } = useFundWallet();
@@ -18,12 +19,9 @@ export default function DeliveryComplete() {
                 <p className="text-gray-600 mb-4">Transaction hash: {fundWalletResponse.txId}</p>
             )}
 
-            <button
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg text-xl hover:bg-blue-700 transition-colors"
-                onClick={resetState}
-            >
+            <Button size="lg" onClick={resetState}>
                 Get more tokens
-            </button>
+            </Button>
         </div>
     );
 }
