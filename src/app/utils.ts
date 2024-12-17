@@ -1,4 +1,4 @@
-export async function fetchPostJson<T>(url: string, body: any, headers: Record<string, string> = {}): Promise<T> {
+export async function fetchPostJson<T>(url: string, body: unknown, headers: Record<string, string> = {}): Promise<T> {
     let res;
     try {
         res = await fetch(url, {
