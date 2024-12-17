@@ -14,10 +14,16 @@
         "@fortawesome/free-brands-svg-icons": "^6.5.2",
         "@fortawesome/free-solid-svg-icons": "^6.5.2",
         "@fortawesome/react-fontawesome": "^0.2.0",
+        "@radix-ui/react-label": "^2.1.1",
         "@tanstack/react-query": "^5.29.0",
+        "class-variance-authority": "^0.7.1",
+        "clsx": "^2.1.1",
+        "lucide-react": "^0.468.0",
         "next": "14.1.4",
         "react": "^18",
         "react-dom": "^18",
+        "tailwind-merge": "^2.5.5",
+        "tailwindcss-animate": "^1.0.7",
         "viem": "^2.9.15"
     },
     "devDependencies": {
