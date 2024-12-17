@@ -14,7 +14,7 @@ export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange })
             <div className="space-y-0.5">
                 <Label htmlFor="chain">Chain</Label>
                 <Select value={chain} onValueChange={onChainChange}>
-                    <SelectTrigger id="chain">
+                    <SelectTrigger id="chain" className="hover:border-[#04C768]">
                         <SelectValue placeholder="Select a chain">{ChainNames[chain]}</SelectValue>
                     </SelectTrigger>
                     <SelectContent>

@@ -29,9 +29,9 @@ export default function APIKey({ apiKey, onChange }: APIKeyProps) {
             <Input
                 type="text"
                 id="apiKey"
-                placeholder="Enter API Key"
+                placeholder="Your API Key"
                 value={apiKey}
-                className={error ? "border-red-500" : ""}
+                className={`hover:border-[#04C768] ${error ? "border-red-500" : ""}`}
                 onChange={(e) => {
                     onChange(e.target.value);
                     setError(null);

@@ -51,7 +51,7 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency, onChangeCu
                     onBlur={(e) => {
                         validateAmount(e.target.value);
                     }}
-                    className={`w-40 font-mono ${error ? "border-red-500" : ""}`}
+                    className={`w-40 font-mono hover:border-[#04C768] ${error ? "border-red-500" : ""}`}
                     min={0}
                     placeholder="Enter amount"
                 />

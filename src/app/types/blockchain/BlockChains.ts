@@ -17,8 +17,8 @@ export const EvmUsdcEnabledTestnetChains = {
 export const NonEVMChain = { SOLANA: "solana" } as const;
 
 export const UsdcEnabledTestnetChains = {
-    ...EvmUsdcEnabledTestnetChains,
     ...NonEVMChain,
+    ...EvmUsdcEnabledTestnetChains,
 } as const;
 
 export type EvmUsdcEnabledTestnet = ObjectValues<typeof EvmUsdcEnabledTestnetChains>;

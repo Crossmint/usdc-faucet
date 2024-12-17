@@ -67,9 +67,9 @@ export default function Address({ address, chainType, onChange }: AddressProps) 
             <Input
                 type="text"
                 id="address"
-                placeholder="Enter wallet address"
+                placeholder={chainType === "evm" ? "Your Ethereum address" : "Your Solana address"}
                 value={address}
-                className={error ? "border-red-500" : ""}
+                className={`hover:border-[#04C768] ${error ? "border-red-500" : ""}`}
                 onChange={(e) => {
                     onChange(e.target.value);
                     setError(null);
