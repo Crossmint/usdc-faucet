@@ -35,7 +35,7 @@ const Faucet: React.FC = () => {
                 {addressTouched && !address.trim() && (
                     <div className="text-red-500 text-sm">Please enter a wallet address</div>
                 )}
-                <div className="flex items-center gap-4">
+                <div className="flex items-end gap-4">
                     <Amount amount={amount} setAmount={setAmount} />
                     <Currencies currency={currency} onChangeCurrency={setCurrency} />
                 </div>

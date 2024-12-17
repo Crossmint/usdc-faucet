@@ -1,5 +1,6 @@
 import React from "react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface AmountProps {
     amount: number;
@@ -15,8 +16,10 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
     };
 
     return (
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-col space-y-2">
+            <Label htmlFor="amount">Amount</Label>
             <Input
+                id="amount"
                 type="number"
                 value={amount}
                 onChange={handleAmountChange}

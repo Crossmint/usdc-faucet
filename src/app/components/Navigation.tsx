@@ -1,8 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Oswald } from "next/font/google";
 
-const oswald = Oswald({ subsets: ["latin"] });
 const Navigation: React.FC = () => {
     return (
         <div className="sm:col-span-6 flex justify-center">

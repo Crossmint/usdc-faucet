@@ -8,7 +8,7 @@ interface AddressProps {
 
 export default function Address({ address, onChange }: AddressProps) {
     return (
-        <div className="grid w-full items-center gap-1.5">
+        <div className="grid w-full items-center space-y-1">
             <Label htmlFor="address">Wallet Address</Label>
             <Input
                 type="text"
