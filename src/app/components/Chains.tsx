@@ -1,7 +1,7 @@
 import React from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
-import { UsdcEnabledTestnet, UsdcEnabledTestnetChains } from "../types/blockchain/BlockChains";
+import { UsdcEnabledTestnet, UsdcEnabledTestnetChains, ChainNames } from "../types/blockchain/BlockChains";
 
 interface ChainsProps {
     chain: UsdcEnabledTestnet;
@@ -15,12 +15,12 @@ export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange })
                 <Label htmlFor="chain">Chain</Label>
                 <Select value={chain} onValueChange={onChainChange}>
                     <SelectTrigger id="chain">
-                        <SelectValue placeholder="Select a chain" />
+                        <SelectValue placeholder="Select a chain">{ChainNames[chain]}</SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                        {Object.values(UsdcEnabledTestnetChains).map((chainOption) => (
-                            <SelectItem key={chainOption} value={chainOption}>
-                                {chainOption}
+                        {Object.entries(UsdcEnabledTestnetChains).map(([key, value]) => (
+                            <SelectItem key={value} value={value}>
+                                {ChainNames[value]}
                             </SelectItem>
                         ))}
                     </SelectContent>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
@@ -8,6 +8,21 @@ interface AmountProps {
 }
 
 const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
+    const [error, setError] = useState<string | null>(null);
+
+    const validateAmount = (value: string) => {
+        const num = parseFloat(value);
+        if (isNaN(num)) {
+            setError("Please enter a valid number");
+        } else if (num <= 0) {
+            setError("Amount must be greater than 0");
+        } else if (num > 100) {
+            setError("Amount must be less than 100");
+        } else {
+            setError(null);
+        }
+    };
+
     const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseFloat(event.target.value);
         if (!isNaN(value) && value >= 0) {
@@ -22,11 +37,18 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
                 id="amount"
                 type="number"
                 value={amount}
-                onChange={handleAmountChange}
+                onChange={(e) => {
+                    handleAmountChange(e);
+                    setError(null);
+                }}
+                onBlur={(e) => {
+                    validateAmount(e.target.value);
+                }}
                 className="w-40 font-mono"
                 min={0}
                 placeholder="Enter amount"
             />
+            {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
     );
 };
