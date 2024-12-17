@@ -8,6 +8,7 @@ import Currencies from "./Currencies";
 import { useFundWallet } from "../hooks/useFundWallet";
 import { UsdcEnabledTestnet, UsdcEnabledTestnetChains } from "../types/blockchain/BlockChains";
 import APIKey from "./APIKey";
+import { Button } from "@/components/ui/button";
 
 const Faucet: React.FC = () => {
     const { fundWallet, fundWalletLoading, error } = useFundWallet();
@@ -35,8 +36,8 @@ const Faucet: React.FC = () => {
             <Amount amount={amount} setAmount={setAmount} currency={currency} />
             <Preview amount={amount} address={address} chain={chain} currency={currency} />
             <APIKey apiKey={apiKey} onChange={setApiKey} />
-            <button
-                className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-blue-500 disabled:bg-gray-400"
+            <Button
+                className="w-40 my-4"
                 disabled={fundWalletLoading || !address.trim() || !apiKey.trim()}
                 onClick={() => {
                     fundWallet({
@@ -49,7 +50,7 @@ const Faucet: React.FC = () => {
                 }}
             >
                 {fundWalletLoading ? "Loading..." : "Fund Wallet"}
-            </button>
+            </Button>
             {error && <div className="text-red-500">{error.message}</div>}
         </div>
     );
