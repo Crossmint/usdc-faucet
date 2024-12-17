@@ -34,7 +34,7 @@ const Faucet: React.FC = () => {
             <CrossmintChains chain={chain} onChainChange={setChain} />
             <Amount amount={amount} setAmount={setAmount} currency={currency} />
             <Preview amount={amount} address={address} chain={chain} currency={currency} />
-            <APIKey apiKey={apiKey} setApiKey={setApiKey} />
+            <APIKey apiKey={apiKey} onChange={setApiKey} />
             <button
                 className="w-40 px-4 py-2 my-4 rounded-md text-white font-mono bg-blue-500 disabled:bg-gray-400"
                 disabled={fundWalletLoading || !address.trim() || !apiKey.trim()}
