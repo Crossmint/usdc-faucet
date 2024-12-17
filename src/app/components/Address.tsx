@@ -1,24 +1,22 @@
-import React from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface AddressProps {
-    address: string;
-    setAddress: (value: string) => void;
+  address: string;
+  onChange: (address: string) => void;
 }
 
-const Address: React.FC<AddressProps> = ({ address, setAddress }) => {
-    return (
-        <>
-            <input
-                type="text"
-                defaultValue={address}
-                onChange={(e) => {
-                    setAddress(e.target.value);
-                }}
-                className="w-full text-center p-3 rounded-full font-mono text-lg bg-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                placeholder="Enter wallet address"
-            />
-        </>
-    );
-};
-
-export default Address;
+export default function Address({ address, onChange }: AddressProps) {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="address">Wallet Address</Label>
+      <Input
+        type="text"
+        id="address"
+        placeholder="Enter wallet address"
+        value={address}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    </div>
+  );
+}

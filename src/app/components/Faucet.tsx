@@ -22,7 +22,7 @@ const Faucet: React.FC = () => {
         <div className="sm:col-span-6 flex flex-col items-center">
             <Address
                 address={address}
-                setAddress={(value) => {
+                onChange={(value) => {
                     setAddressTouched(true);
                     setAddress(value);
                 }}
