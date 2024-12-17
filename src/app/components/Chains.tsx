@@ -18,7 +18,7 @@ export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange })
                         <SelectValue placeholder="Select a chain">{ChainNames[chain]}</SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                        {Object.entries(UsdcEnabledTestnetChains).map(([key, value]) => (
+                        {Object.entries(UsdcEnabledTestnetChains).map(([_key, value]) => (
                             <SelectItem key={value} value={value}>
                                 {ChainNames[value]}
                             </SelectItem>
