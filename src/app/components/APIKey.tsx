@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { useState } from "react";
 
 interface APIKeyProps {
     apiKey: string;
@@ -8,17 +9,38 @@ interface APIKeyProps {
 }
 
 export default function APIKey({ apiKey, onChange }: APIKeyProps) {
+    const [error, setError] = useState<string | null>(null);
+
+    const validateAPIKey = (value: string) => {
+        if (!value.trim()) {
+            setError("API key is required");
+        } else if (!value.startsWith("sk_")) {
+            setError("Invalid API key");
+        } else {
+            setError(null);
+        }
+    };
+
     return (
         <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="apiKey">API Key</Label>
+            <Label htmlFor="apiKey" className={error ? "text-red-500" : ""}>
+                API Key
+            </Label>
             <Input
                 type="text"
                 id="apiKey"
                 placeholder="Enter API Key"
                 value={apiKey}
-                onChange={(e) => onChange(e.target.value)}
+                className={error ? "border-red-500" : ""}
+                onChange={(e) => {
+                    onChange(e.target.value);
+                    setError(null);
+                }}
+                onBlur={(e) => {
+                    validateAPIKey(e.target.value);
+                }}
             />
-
+            {error && <p className="text-sm text-red-500">{error}</p>}
             <Alert>
                 <AlertDescription>
                     <div className="flex flex-col gap-2">
