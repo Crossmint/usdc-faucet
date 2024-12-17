@@ -17,7 +17,7 @@ const Currencies: React.FC<CurrenciesProps> = ({ currency, onChangeCurrency }) =
                     onChangeCurrency(value as CryptoCurrency);
                 }
             }}
-            className="flex space-x-4 mt-4"
+            className="space-x-4"
         >
             <ToggleGroupItem value={CryptoCurrency.USDC}>USDC</ToggleGroupItem>
             <ToggleGroupItem value={CryptoCurrency.USDXM}>USDXM</ToggleGroupItem>

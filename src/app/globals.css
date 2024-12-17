@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 0, 155, 133;
-    --background-end-rgb: 0, 225, 250;
+    --foreground: white;
+
+    @apply bg-stone-950;
 }
 
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    background-color: var(--background);
+    color: var(--foreground);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 100vh;
@@ -62,7 +62,7 @@ body {
     width: 100%;
 }
 @layer base {
-  :root {
+    :root {
         --background: 0 0% 100%;
         --foreground: 0 0% 3.9%;
         --card: 0 0% 100%;
@@ -89,7 +89,7 @@ body {
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
     }
-  .dark {
+    .dark {
         --background: 0 0% 3.9%;
         --foreground: 0 0% 98%;
         --card: 0 0% 3.9%;
@@ -117,10 +117,7 @@ body {
     }
 }
 @layer base {
-  * {
-    @apply border-border;
-    }
-  body {
-    @apply bg-background text-foreground;
+    * {
+        @apply border-border;
     }
 }

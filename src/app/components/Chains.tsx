@@ -9,7 +9,7 @@ interface ChainsProps {
 
 export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange }) => {
     return (
-        <div className="w-full max-w-xs mt-4">
+        <div className="w-full max-w-xs">
             <Select value={chain} onValueChange={onChainChange}>
                 <SelectTrigger>
                     <SelectValue placeholder="Select a chain" />

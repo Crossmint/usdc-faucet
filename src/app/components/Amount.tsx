@@ -1,14 +1,12 @@
 import React from "react";
-import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import { Input } from "@/components/ui/input";
 
 interface AmountProps {
     amount: number;
     setAmount: (value: number) => void;
-    currency: CryptoCurrency;
 }
 
-const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency }) => {
+const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
     const handleAmountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = parseFloat(event.target.value);
         if (!isNaN(value) && value >= 0) {
@@ -17,7 +15,7 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency }) => {
     };
 
     return (
-        <div className="flex items-center space-x-2 mt-8">
+        <div className="flex items-center space-x-2">
             <Input
                 type="number"
                 value={amount}
@@ -26,7 +24,6 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency }) => {
                 min={0}
                 placeholder="Enter amount"
             />
-            <span className="text-gray-600 font-mono">{currency}</span>
         </div>
     );
 };

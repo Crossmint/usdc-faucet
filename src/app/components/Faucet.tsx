@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Address from "../components/Address";
 import Amount from "../components/Amount";
 import { CrossmintChains } from "../components/Chains";
-import Preview from "../components/Preview";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
 import Currencies from "./Currencies";
 import { useFundWallet } from "../hooks/useFundWallet";
@@ -20,38 +19,44 @@ const Faucet: React.FC = () => {
     const [chain, setChain] = useState<UsdcEnabledTestnet>(UsdcEnabledTestnetChains.ETHEREUM_SEPOLIA);
 
     return (
-        <div className="sm:col-span-6 flex flex-col items-center">
-            <Address
-                address={address}
-                onChange={(value) => {
-                    setAddressTouched(true);
-                    setAddress(value);
-                }}
-            />
-            {addressTouched && !address.trim() && (
-                <div className="text-red-500 text-sm">Please enter a wallet address</div>
-            )}
-            <Currencies currency={currency} onChangeCurrency={setCurrency} />
-            <CrossmintChains chain={chain} onChainChange={setChain} />
-            <Amount amount={amount} setAmount={setAmount} currency={currency} />
-            <Preview amount={amount} address={address} chain={chain} currency={currency} />
-            <APIKey apiKey={apiKey} onChange={setApiKey} />
-            <Button
-                className="w-40 my-4"
-                disabled={fundWalletLoading || !address.trim() || !apiKey.trim()}
-                onClick={() => {
-                    fundWallet({
-                        amount,
-                        address,
-                        chain: chain,
-                        currency,
-                        apiKey: apiKey,
-                    });
-                }}
-            >
-                {fundWalletLoading ? "Loading..." : "Fund Wallet"}
-            </Button>
-            {error && <div className="text-red-500">{error.message}</div>}
+        <div className="sm:col-span-6 flex flex-col bg-black rounded-md">
+            <div className="border-b border-stone-900 p-3">
+                <h2 className="text-base font-semibold">Request</h2>
+            </div>
+            <div className="p-3 flex flex-col gap-4">
+                <CrossmintChains chain={chain} onChainChange={setChain} />
+                <Address
+                    address={address}
+                    onChange={(value) => {
+                        setAddressTouched(true);
+                        setAddress(value);
+                    }}
+                />
+                {addressTouched && !address.trim() && (
+                    <div className="text-red-500 text-sm">Please enter a wallet address</div>
+                )}
+                <div className="flex items-center gap-4">
+                    <Amount amount={amount} setAmount={setAmount} />
+                    <Currencies currency={currency} onChangeCurrency={setCurrency} />
+                </div>
+                <APIKey apiKey={apiKey} onChange={setApiKey} />
+                <Button
+                    className="w-40 my-4"
+                    disabled={fundWalletLoading || !address.trim() || !apiKey.trim()}
+                    onClick={() => {
+                        fundWallet({
+                            amount,
+                            address,
+                            chain: chain,
+                            currency,
+                            apiKey: apiKey,
+                        });
+                    }}
+                >
+                    {fundWalletLoading ? "Loading..." : "Fund Wallet"}
+                </Button>
+                {error && <div className="text-red-500">{error.message}</div>}
+            </div>
         </div>
     );
 };
