@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 interface AmountProps {
     amount: number;
     setAmount: (value: number) => void;
+    currency: CryptoCurrency;
+    onChangeCurrency: (currency: CryptoCurrency) => void;
 }
 
-const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
+const Amount: React.FC<AmountProps> = ({ amount, setAmount, currency, onChangeCurrency }) => {
     const [error, setError] = useState<string | null>(null);
 
     const validateAmount = (value: string) => {
@@ -33,21 +37,35 @@ const Amount: React.FC<AmountProps> = ({ amount, setAmount }) => {
     return (
         <div className="flex flex-col space-y-2">
             <Label htmlFor="amount">Amount</Label>
-            <Input
-                id="amount"
-                type="number"
-                value={amount}
-                onChange={(e) => {
-                    handleAmountChange(e);
-                    setError(null);
-                }}
-                onBlur={(e) => {
-                    validateAmount(e.target.value);
-                }}
-                className="w-40 font-mono"
-                min={0}
-                placeholder="Enter amount"
-            />
+            <div className="flex items-center space-x-4">
+                <Input
+                    id="amount"
+                    type="number"
+                    value={amount}
+                    onChange={(e) => {
+                        handleAmountChange(e);
+                        setError(null);
+                    }}
+                    onBlur={(e) => {
+                        validateAmount(e.target.value);
+                    }}
+                    className="w-40 font-mono"
+                    min={0}
+                    placeholder="Enter amount"
+                />
+                <ToggleGroup
+                    type="single"
+                    value={currency}
+                    onValueChange={(value) => {
+                        if (value) {
+                            onChangeCurrency(value as CryptoCurrency);
+                        }
+                    }}
+                >
+                    <ToggleGroupItem value={CryptoCurrency.USDC}>USDC</ToggleGroupItem>
+                    <ToggleGroupItem value={CryptoCurrency.USDXM}>USDXM</ToggleGroupItem>
+                </ToggleGroup>
+            </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
         </div>
     );

@@ -3,7 +3,6 @@ import Address from "../components/Address";
 import Amount from "../components/Amount";
 import { CrossmintChains } from "../components/Chains";
 import { CryptoCurrency } from "../types/currencies/CryptoCurrencies";
-import Currencies from "./Currencies";
 import { useFundWallet } from "../hooks/useFundWallet";
 import { getChainType, UsdcEnabledTestnet, UsdcEnabledTestnetChains } from "../types/blockchain/BlockChains";
 import APIKey from "./APIKey";
@@ -32,10 +31,7 @@ const Faucet: React.FC = () => {
                         setAddress(value);
                     }}
                 />
-                <div className="flex items-end gap-4">
-                    <Amount amount={amount} setAmount={setAmount} />
-                    <Currencies currency={currency} onChangeCurrency={setCurrency} />
-                </div>
+                <Amount amount={amount} setAmount={setAmount} currency={currency} onChangeCurrency={setCurrency} />
                 <APIKey apiKey={apiKey} onChange={setApiKey} />
                 <Button
                     className="w-40 my-4"
