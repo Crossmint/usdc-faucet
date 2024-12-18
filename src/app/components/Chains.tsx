@@ -1,26 +1,31 @@
 import React from "react";
-import { UsdcEnabledTestnet } from "../types/blockchain/BlockChains";
-import { UsdcEnabledTestnetChains } from "../types/blockchain/BlockChains";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+import { UsdcEnabledTestnet, UsdcEnabledTestnetChains, ChainNames } from "../types/blockchain/BlockChains";
 
 interface ChainsProps {
     chain: UsdcEnabledTestnet;
     onChainChange: (chain: UsdcEnabledTestnet) => void;
 }
 
-export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange: onChainChange }) => {
+export const CrossmintChains: React.FC<ChainsProps> = ({ chain, onChainChange }) => {
     return (
-        <div className="w-full max-w-xs mt-4">
-            <select
-                value={chain}
-                onChange={(e) => onChainChange(e.target.value as UsdcEnabledTestnet)}
-                className="w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-                {Object.values(UsdcEnabledTestnetChains).map((chainOption) => (
-                    <option key={chainOption} value={chainOption}>
-                        {chainOption}
-                    </option>
-                ))}
-            </select>
+        <div className="w-full max-w-xs">
+            <div className="space-y-0.5">
+                <Label htmlFor="chain">Chain</Label>
+                <Select value={chain} onValueChange={onChainChange}>
+                    <SelectTrigger id="chain" className="hover:border-[#04C768]">
+                        <SelectValue placeholder="Select a chain">{ChainNames[chain]}</SelectValue>
+                    </SelectTrigger>
+                    <SelectContent>
+                        {Object.entries(UsdcEnabledTestnetChains).map(([_key, value]) => (
+                            <SelectItem key={value} value={value}>
+                                {ChainNames[value]}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            </div>
         </div>
     );
 };

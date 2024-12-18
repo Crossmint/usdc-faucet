@@ -13,7 +13,7 @@ const Page: React.FC = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <FundWalletProvider>
-                <div className="container mx-auto max-w-5xl bg-white rounded-lg">
+                <div className="container mx-auto max-w-5xl rounded-lg">
                     <div className="grid grid-cols-1 sm:grid-cols-6 sm:gap-8 p-8">
                         <Navigation />
                         <FaucetRouter />

@@ -1,29 +1,26 @@
 import { useFundWallet } from "../hooks/useFundWallet";
+import { Button } from "@/components/ui/button";
 
 export default function DeliveryComplete() {
     const { resetState, fundWalletResponse } = useFundWallet();
     return (
-        <div className="sm:col-span-6 flex flex-col items-center">
-            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center mb-8">
-                {successIcon}
+        <div className="sm:col-span-6 flex flex-col items-center p-6 gap-12">
+            <div className="w-16 h-16 bg-green-50 rounded-full flex items-center justify-center">{successIcon}</div>
+            <div className="flex flex-col items-center gap-6">
+                <h1 className="text-xl font-bold text-gray-100">Tokens sent</h1>
+
+                <div className="flex flex-col items-center gap-1">
+                    <p className=" text-gray-100">
+                        Your tokens are on the way to your wallet and should appear shortly.
+                    </p>
+                    {fundWalletResponse?.txId && (
+                        <p className="text-gray-400">Transaction hash: {fundWalletResponse.txId}</p>
+                    )}
+                </div>
+                <Button size="lg" onClick={resetState}>
+                    Get more tokens
+                </Button>
             </div>
-
-            <h1 className="text-3xl font-bold text-gray-900 mb-6">Tokens sent</h1>
-
-            <p className="text-2xl text-gray-600 mb-8">
-                Your tokens are on the way to your wallet and should appear shortly.
-            </p>
-
-            {fundWalletResponse?.txId && (
-                <p className="text-gray-600 mb-4">Transaction hash: {fundWalletResponse.txId}</p>
-            )}
-
-            <button
-                className="bg-blue-600 text-white px-8 py-3 rounded-lg text-xl hover:bg-blue-700 transition-colors"
-                onClick={resetState}
-            >
-                Get more tokens
-            </button>
         </div>
     );
 }

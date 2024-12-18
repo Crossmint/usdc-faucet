@@ -1,21 +1,19 @@
 import React from "react";
 import Image from "next/image";
-import { Oswald } from "next/font/google";
 
-const oswald = Oswald({ subsets: ["latin"] });
 const Navigation: React.FC = () => {
     return (
-        <div className="sm:col-span-6 flex justify-between">
-            <div className="flex">
+        <div className="sm:col-span-6 flex justify-center">
+            <div className="flex flex-col gap-6 items-center">
                 <Image
                     src="/crossmint-logo.svg"
-                    width={246}
-                    height={55}
-                    className="rounded-lg shrink"
+                    width={179}
+                    height={40}
+                    className="shrink"
                     alt="Crossmint logo"
                     priority={true}
                 />
-                <div className={`ml-5 pt-2 text-2xl text-blue-500 ${oswald.className}`}>USDC Testnet Faucet</div>
+                <div className={`text-4xl font-bold`}>USDC Testnet Faucet</div>
             </div>
         </div>
     );
