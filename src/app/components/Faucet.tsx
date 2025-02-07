@@ -41,7 +41,7 @@ const Faucet: React.FC = () => {
                             amount,
                             address,
                             chain: chain,
-                            currency,
+                            token: currency,
                             apiKey: apiKey,
                         });
                     }}
