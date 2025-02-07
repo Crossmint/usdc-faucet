@@ -7,7 +7,7 @@ export interface FundWalletProps {
     amount: number;
     address: string;
     chain: UsdcEnabledTestnet;
-    currency: CryptoCurrency;
+    token: CryptoCurrency;
     apiKey: string;
 }
 
@@ -46,7 +46,7 @@ export function FundWalletProvider({
     async function fundWallet(props: FundWalletProps): Promise<FundWalletResponse | undefined> {
         const fundWalletBody = {
             amount: props.amount,
-            currency: props.currency,
+            token: props.token,
             ...(props.chain !== "solana" && { chain: props.chain }),
         };
 
