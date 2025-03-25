@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Banner from "./Banner";
 
 const Navigation: React.FC = () => {
     return (
@@ -14,6 +15,11 @@ const Navigation: React.FC = () => {
                     priority={true}
                 />
                 <div className={`text-4xl font-bold`}>USDC Testnet Faucet</div>
+                <Banner
+                    color="info"
+                    title="Notice"
+                    body="This faucet is currently only accepting requests for USDXM."
+                />
             </div>
         </div>
     );
