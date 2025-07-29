@@ -8,7 +8,7 @@ export const EvmUsdcEnabledTestnetChains = {
     ETHEREUM_SEPOLIA: BlockchainIncludingTestnet.ETHEREUM_SEPOLIA,
     OPTIMISM_SEPOLIA: BlockchainIncludingTestnet.OPTIMISM_SEPOLIA,
     POLYGON_AMOY: BlockchainIncludingTestnet.POLYGON_AMOY,
-    SEI_ATLANTIC_2_TESTNET: "SEI_ATLANTIC_2_TESTNET",
+    SEI_ATLANTIC_2_TESTNET: "sei-atlantic-2-testnet",
     SKALE_NEBULA_TESTNET: "skale-nebula-testnet",
     SONEIUM_MINATO_TESTNET: "soneium-minato-testnet",
     VICTION_TESTNET: "viction-testnet",
