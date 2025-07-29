@@ -46,7 +46,7 @@ export const ChainNames: Record<UsdcEnabledTestnet, string> = {
     [BlockchainIncludingTestnet.ETHEREUM_SEPOLIA]: "Ethereum Sepolia",
     [BlockchainIncludingTestnet.OPTIMISM_SEPOLIA]: "Optimism Sepolia",
     [BlockchainIncludingTestnet.POLYGON_AMOY]: "Polygon Amoy",
-    SEI_ATLANTIC_2_TESTNET: "Sei Atlantic 2 Testnet",
+    "sei-atlantic-2-testnet": "Sei Atlantic 2 Testnet",
     "skale-nebula-testnet": "Skale Nebula Testnet",
     "soneium-minato-testnet": "Soneium Minato Testnet",
     "viction-testnet": "Viction Testnet",
