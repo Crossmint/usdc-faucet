@@ -35,6 +35,36 @@ function validateSolanaAddress(address: string): boolean {
     return isBase58(address);
 }
 
+function isBase32(str: string): boolean {
+    const base32Alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    for (const char of str) {
+        if (!base32Alphabet.includes(char)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function validateStellarAddress(address: string): boolean {
+    // Check if the address is a string
+    if (typeof address !== "string") {
+        return false;
+    }
+
+    // Check the length of the address (Stellar addresses are 56 characters)
+    if (address.length !== 56) {
+        return false;
+    }
+
+    // Check if the address starts with 'G' (public key)
+    if (!address.startsWith("G")) {
+        return false;
+    }
+
+    // Check if the address is a valid base32 string
+    return isBase32(address);
+}
+
 export default function Address({ address, chainType, onChange }: AddressProps) {
     const [error, setError] = useState<string | null>(null);
 
@@ -56,6 +86,12 @@ export default function Address({ address, chainType, onChange }: AddressProps) 
             } else {
                 setError(null);
             }
+        } else if (chainType === "stellar") {
+            if (!validateStellarAddress(addr)) {
+                setError("Invalid Stellar address");
+            } else {
+                setError(null);
+            }
         }
     };
 
@@ -67,7 +103,13 @@ export default function Address({ address, chainType, onChange }: AddressProps) 
             <Input
                 type="text"
                 id="address"
-                placeholder={chainType === "evm" ? "Your Ethereum address" : "Your Solana address"}
+                placeholder={
+                    chainType === "evm"
+                        ? "Your Ethereum address"
+                        : chainType === "solana"
+                          ? "Your Solana address"
+                          : "Your Stellar address"
+                }
                 value={address}
                 className={`hover:border-[#04C768] ${error ? "border-red-500" : ""}`}
                 onChange={(e) => {

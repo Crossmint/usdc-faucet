@@ -14,7 +14,7 @@ export const EvmUsdcEnabledTestnetChains = {
     VICTION_TESTNET: "viction-testnet",
 } as const;
 
-export const NonEVMChain = { SOLANA: "solana" } as const;
+export const NonEVMChain = { SOLANA: "solana", STELLAR: "stellar" } as const;
 
 export const UsdcEnabledTestnetChains = {
     ...NonEVMChain,
@@ -26,11 +26,14 @@ export type EvmUsdcEnabledTestnet = ObjectValues<typeof EvmUsdcEnabledTestnetCha
 export type NonEVMChain = ObjectValues<typeof NonEVMChain>;
 export type UsdcEnabledTestnet = ObjectValues<typeof UsdcEnabledTestnetChains>;
 
-export type ChainType = "evm" | "solana";
+export type ChainType = "evm" | "solana" | "stellar";
 
 export function getChainType(chain: UsdcEnabledTestnet): ChainType {
     if (chain === "solana") {
         return "solana";
+    }
+    if (chain === "stellar") {
+        return "stellar";
     }
     if (Object.values(EvmUsdcEnabledTestnetChains).includes(chain)) {
         return "evm";
@@ -51,4 +54,5 @@ export const ChainNames: Record<UsdcEnabledTestnet, string> = {
     "soneium-minato-testnet": "Soneium Minato Testnet",
     "viction-testnet": "Viction Testnet",
     solana: "Solana",
+    stellar: "Stellar",
 } as const;
