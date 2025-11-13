@@ -47,7 +47,7 @@ export function FundWalletProvider({
         const fundWalletBody = {
             amount: props.amount,
             token: props.token,
-            ...(props.chain !== "solana" && { chain: props.chain }),
+            chain: props.chain,
         };
 
         setFundWalletLoading(true);
